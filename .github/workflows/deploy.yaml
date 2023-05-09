@@ -13,17 +13,17 @@ jobs:
       - run: docker build -t rthaosen/docker-react -f Dockerfile.dev .
       - run: docker run -e CI=true rthaosen/docker-react npm test
  
-#      - name: Generate deployment package
-#        run: zip -r deploy.zip . -x '*.git*'
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
  
-#      - name: Deploy to EB
-#        uses: rthaosen_iam/beanstalk-deploy@v18
-#        with:
-#          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-#          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-#          application_name: docker-gh
-#          environment_name: Dockergh-env
-#          existing_bucket_name: elasticbeanstalk-ap-south-1-test
-#          region: ap-south-1
-#          version_label: ${{ github.sha }}
-#          deployment_package: deploy.zip
+      - name: Deploy to EB
+        uses: rthaosen_iam/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: docker-react
+          environment_name: Docker-react-env
+          existing_bucket_name: elasticbeanstalk-ap-south-1-023944970815
+          region: ap-south-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip
